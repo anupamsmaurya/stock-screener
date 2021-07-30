@@ -1,0 +1,85 @@
+@import "../../utils/mixin.scss";
+
+.stock-details { 
+    width: 90%;
+    border: 1px solid #434651;
+    background: #1e222d;
+    border-radius: .5rem;
+    padding: 1rem;
+    @include for-size(tablet-landscape-up) {
+        width: 80%;
+    }
+    .stock-row {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        .symbol-info {
+            font-weight: bold;
+            font-size: 1.2rem;
+            position: relative;
+            .symbol-star {
+                display: flex;
+            }
+            .company-name {
+                font-size: 1.5rem;
+            }
+        }
+        .price-wrapper {
+            display: flex;
+            align-items: center;
+            font-size: 2rem;
+            font-weight: bold;
+            flex-direction: column;
+            @include for-size(tablet-landscape-up) {
+                flex-direction: row;
+            }
+            .currency {
+                font-size: .8rem;
+            }
+            .change {
+                font-size: 1rem;
+                margin-left: .5rem;
+                &.green {
+                    color: green;
+                }
+                &.red {
+                    color: indianred;
+                }
+            }    
+        }    
+    }
+}
+
+.star {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 20px solid hsl(0, 12%, 92%);
+    margin-left: .5rem;
+    cursor: pointer;
+    &:hover {
+        border-bottom-color: hsl(60, 100%, 70%);
+        &:after {
+            border-top-color: hsl(60, 100%, 70%);
+        }
+    }
+    &.fill {
+        border-bottom-color: hsl(60, 100%, 70%);
+        &:after {
+            border-top-color: hsl(60, 100%, 70%);
+        }
+    }
+    &:after {
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 20px solid hsl(0, 12%, 92%);
+        position: absolute;
+        content: "";
+        top: 6px;
+        left: 54px;
+        cursor: pointer;
+      }
+  }

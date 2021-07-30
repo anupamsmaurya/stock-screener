@@ -1,0 +1,19 @@
+.company-info-container {
+    display: flex;
+    justify-content: space-between;
+    .company-info-section {
+        width: 45vw;
+        >div {
+            margin: 1rem 0;
+            .label {
+                font-weight: bold;
+            }
+            .value {
+    
+            }    
+        }
+    }
+    button {
+        
+    }
+}

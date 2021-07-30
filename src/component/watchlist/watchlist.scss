@@ -1,0 +1,11 @@
+.watchlist-container {
+    border: 1px solid #434651;
+    background: #1e222d;
+    border-radius: .5rem;
+    padding: 1rem;
+    .watchlist-item {
+        padding: .5rem 0;
+        cursor: pointer;
+        font-weight: bold;
+    }
+}

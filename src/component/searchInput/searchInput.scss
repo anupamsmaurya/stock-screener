@@ -1,0 +1,17 @@
+.search-wrapper {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    label {
+
+    }
+    input {
+        height: 2.5rem;
+        width: 40%;
+    }
+    button {
+        padding: .7rem;
+        margin-left: 1rem;
+    }
+}
