@@ -1,6 +1,14 @@
-# Getting Started with Create React App
+# Stock Screener
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+This app lets users search details of company and their current stock prices. User can also shortlist their favoruites.
+
+After searching for a stock, user can add it to their watchlist by clicking on the ***star*** icon next to the stock name. Clicking again on the icon will remove the stock from the watchlist. From the watchlist user can click on any entry to load details about that stock.
+
+Since this is a static app, an enhancement would be to store this watchlist in `localStorage` for preserving on page refresh.
+
+Test cases present in `App.test.tsx` file
 
 ## Available Scripts
 
