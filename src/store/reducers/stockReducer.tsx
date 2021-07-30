@@ -1,36 +1,36 @@
-//import { PostsActions, PostsState } from "../../types/types";
-import { CompanyInfoType, StockInfoType, WatchlistType } from "../../types/types";
-import { ADD_FAVOURITE_COMPANY, FETCH_COMPANY_DETAILS_REQUEST, FETCH_COMPANY_DETAILS_SUCCESS, FETCH_COMPANY_STOCK_INFO_REQUEST, REMOVE_FAVOURITE_COMPANY } from "../actionTypes";
+import { StockActions, StockState } from "../../types/types";
+import { ADD_FAVOURITE_COMPANY, FETCH_COMPANY_DETAILS_FAILURE, FETCH_COMPANY_DETAILS_REQUEST, FETCH_COMPANY_DETAILS_SUCCESS, REMOVE_FAVOURITE_COMPANY } from "../actionTypes";
 
-const initialState = {
-  watchlist: [] as WatchlistType[],
-  selectedCompany: null as unknown as CompanyInfoType,
-  selectedStock: null as unknown as StockInfoType,
-  loading: false
+const initialState: StockState = {
+  watchlist: [],
+  selectedCompany: null,
+  selectedStock: null,
+  loading: false,
+  error: null
 };
 
-const stockReducer = (state = initialState, action: any) => {
+const stockReducer = (state = initialState, action: StockActions) => {
   switch (action.type) {
     case FETCH_COMPANY_DETAILS_REQUEST:
       return {
         ...state,
-        loading: true
+        loading: true,
+        error: null
       };
     case FETCH_COMPANY_DETAILS_SUCCESS:
       return {
         ...state,
-        pending: false,
         selectedCompany: action.payload.company,
         selectedStock: action.payload.stock,
         loading: false,
         error: null
       };
-    case FETCH_COMPANY_STOCK_INFO_REQUEST:
+    case FETCH_COMPANY_DETAILS_FAILURE:
       return {
         ...state,
-        posts: [],
-        error: action.payload.error
-      };
+        error: action.error,
+        loading: false
+      }  
     case ADD_FAVOURITE_COMPANY:
       return {
         ...state,

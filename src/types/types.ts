@@ -1,3 +1,13 @@
+import { ADD_FAVOURITE_COMPANY, FETCH_COMPANY_DETAILS_FAILURE, FETCH_COMPANY_DETAILS_REQUEST, FETCH_COMPANY_DETAILS_SUCCESS, REMOVE_FAVOURITE_COMPANY } from "../store/actionTypes";
+
+export interface StockState {
+    watchlist: WatchlistType[];
+    selectedCompany: CompanyInfoType | null;
+    selectedStock: StockInfoType | null;
+    loading: boolean;
+    error: string | null;
+  }
+  
 export interface CompanyInfoType {
     CEO: string,
     address: string,
@@ -103,3 +113,34 @@ export interface StockInfoType {
     week52Low: number,
     ytdChange: number
 }
+
+export interface FetchStockRequest {
+    type: typeof FETCH_COMPANY_DETAILS_REQUEST;
+    payload: FetchCompanyRequestParamType;
+}
+
+export interface FetchStockSuccess {
+    type: typeof FETCH_COMPANY_DETAILS_SUCCESS;
+    payload: any;
+}
+
+export interface FetchStockFailure {
+    type: typeof FETCH_COMPANY_DETAILS_FAILURE;
+    error: string;
+}
+
+export interface AddFavouriteCompany {
+    type: typeof ADD_FAVOURITE_COMPANY;
+    payload: AddToWatchlistRequestParamtype;
+}
+export interface RemoveFavouriteCompany {
+    type: typeof REMOVE_FAVOURITE_COMPANY;
+    payload: RemoveFromWatchlistResponseType;
+}
+
+export type StockActions =
+  | FetchStockRequest
+  | FetchStockSuccess
+  | FetchStockFailure
+  | AddFavouriteCompany
+  | RemoveFavouriteCompany;

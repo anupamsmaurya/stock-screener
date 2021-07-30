@@ -6,7 +6,7 @@ import "./stockDetails.scss";
 
 const StockDetails = () => {
 
-    const { selectedStock, watchlist, loading } = useSelector(
+    const { selectedStock, watchlist, loading, error } = useSelector(
         (state: RootState) => state.stocks
     );
 
@@ -14,11 +14,13 @@ const StockDetails = () => {
 
     if(loading) return <Spinner />
 
+    if(error) return <div className='center'>{error}</div>
+
     if(!selectedStock) return <></>
 
 
     const { latestPrice, currency, change, changePercent, companyName, symbol, peRatio, iexOpen, iexClose, week52High, week52Low } = selectedStock
-    const isShortlisted = watchlist.some(company => company.symbol === symbol)
+    const isShortlisted = watchlist !=null && watchlist.length>0 && watchlist.some(company => company.symbol === symbol)
 
     const handleShortlist = () => {
         isShortlisted ?
