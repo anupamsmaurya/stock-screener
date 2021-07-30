@@ -1,5 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
-import { addFavouriteCompany, removeFavouriteCompany } from "../../store/actions/stockActions";
+import { useSelector } from "react-redux";
 import { RootState } from "../../store/reducers/rootReducer";
 import "./companyDetails.scss";
 
@@ -8,8 +7,6 @@ const CompanyDetails = () => {
     const { selectedCompany } = useSelector(
         (state: RootState) => state.stocks
     );
-
-    console.log('selectedCompany:', selectedCompany)
 
     if (!selectedCompany) return <></>
 

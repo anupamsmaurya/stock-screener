@@ -5,7 +5,8 @@ import { ADD_FAVOURITE_COMPANY, FETCH_COMPANY_DETAILS_REQUEST, FETCH_COMPANY_DET
 const initialState = {
   watchlist: [] as WatchlistType[],
   selectedCompany: null as unknown as CompanyInfoType,
-  selectedStock: null as unknown as StockInfoType
+  selectedStock: null as unknown as StockInfoType,
+  loading: false
 };
 
 const stockReducer = (state = initialState, action: any) => {
@@ -13,7 +14,7 @@ const stockReducer = (state = initialState, action: any) => {
     case FETCH_COMPANY_DETAILS_REQUEST:
       return {
         ...state,
-        pending: true
+        loading: true
       };
     case FETCH_COMPANY_DETAILS_SUCCESS:
       return {
@@ -21,12 +22,12 @@ const stockReducer = (state = initialState, action: any) => {
         pending: false,
         selectedCompany: action.payload.company,
         selectedStock: action.payload.stock,
+        loading: false,
         error: null
       };
     case FETCH_COMPANY_STOCK_INFO_REQUEST:
       return {
         ...state,
-        pending: false,
         posts: [],
         error: action.payload.error
       };

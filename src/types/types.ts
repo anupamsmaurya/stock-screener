@@ -26,6 +26,25 @@ export interface WatchlistType {
     companyName: string
 }
 
+export interface FetchCompanyRequestParamType {
+    searchTerm: string
+}
+
+export interface FetchCompanyResponseType {
+    company: CompanyInfoType,
+    stock: StockInfoType
+
+}
+
+export interface AddToWatchlistRequestParamtype {
+    symbol: string, 
+    companyName: string
+}
+
+export interface RemoveFromWatchlistResponseType {
+    symbol: string
+}
+
 export interface StockInfoType {
     avgTotalVolume: number,
     calculationPrice: string,

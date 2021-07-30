@@ -1,17 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
-import { removeFavouriteCompany, addFavouriteCompany } from "../../store/actions/stockActions";
+import { removeFromWatchlist, addToWatchlist } from "../../store/actions/stockActions";
 import { RootState } from "../../store/reducers/rootReducer";
+import Spinner from "../spinner";
 import "./stockDetails.scss";
 
 const StockDetails = () => {
 
-    const { selectedStock, watchlist } = useSelector(
+    const { selectedStock, watchlist, loading } = useSelector(
         (state: RootState) => state.stocks
     );
 
-    console.log('watchlist', watchlist)
-
     const dispatch = useDispatch()
+
+    if(loading) return <Spinner />
 
     if(!selectedStock) return <></>
 
@@ -19,12 +20,10 @@ const StockDetails = () => {
     const { latestPrice, currency, change, changePercent, companyName, symbol, peRatio, iexOpen, iexClose, week52High, week52Low } = selectedStock
     const isShortlisted = watchlist.some(company => company.symbol === symbol)
 
-    console.log(watchlist, isShortlisted)
-
     const handleShortlist = () => {
         isShortlisted ?
-            dispatch(removeFavouriteCompany({ symbol })) :
-            dispatch(addFavouriteCompany({ symbol, companyName }))
+            dispatch(removeFromWatchlist({ symbol })) :
+            dispatch(addToWatchlist({ symbol, companyName }))
     }
 
     return (
@@ -43,7 +42,7 @@ const StockDetails = () => {
             </div>
             <div className='price-wrapper'>                 
                 <span className='price'><span className='currency'>{currency}</span>{latestPrice}</span>
-                <span className={`change ${change>-1? 'green': 'red'}`}>{change} ({changePercent}%)</span>
+                <span className={`change ${change>0? 'green': 'red'}`}>{change} ({changePercent}%)</span>
             </div> 
 
             </div>
